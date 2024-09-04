@@ -1,0 +1,43 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: test-svc
+  description: Connect Demo Test Service
+  annotations:
+    backstage.io/kubernetes-id: test-svc
+    backstage.io/kubernetes-namespace: workloads
+    backstage.io/kubernetes-cluster: connect-demo-cluster
+    github.com/project-slug: nicpym/test-svc
+    argocd/app-name: test-svc
+    argocd/app-namespace: connect-demo-cluster
+    backstage.io/techdocs-ref: dir:.
+  tags:
+    - python
+    - fastapi
+  links:
+    - url: http://test-svc.connect-demo-cluster.localhost/docs
+      title: Swagger Docs
+      icon: web
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:default/team-b
+  system: connect-demo
+  dependsOn:
+    - resource:default/connect-demo-cluster
+  providesApis:
+    - test-svc
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: test-svc
+  description: Connect Demo Test Service
+  tags:
+    - rest
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: group:default/team-b
+  definition:
+    $text: ./openapi.yaml

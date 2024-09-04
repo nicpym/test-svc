@@ -1,0 +1,7 @@
+site_name: 'test-svc-docs'
+site_description: Connect Demo Test Service
+nav:
+  - Overview: index.md
+
+plugins:
+  - techdocs-core

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-svc
+spec:
+  selector:
+    matchLabels:
+      app: test-svc
+  template:
+    metadata:
+      labels:
+        app: test-svc
+    spec:
+      containers:
+      - name: test-svc
+        image: to-be-replaced:latest
+        ports:
+        - containerPort: 8080
+        env:
+          - name: PORT
+            value: "8080"
